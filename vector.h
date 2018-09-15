@@ -22,7 +22,7 @@ public:
     arr(arr const &other)
         :size_cur(other.size_cur), capacity_arr(other.capacity_arr) {
         for (size_t i = 0; i < size_cur; i++) {
-            new(data + i) T(other.data[i]);
+            new(reinterpret_cast<T *>(data) + i) T(reinterpret_cast<const T *>(other.data)[i]);
         }
     }
 
